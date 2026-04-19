@@ -1,135 +1,58 @@
-# 🧼 AI Rest Room™ (HITL)
-### AI-Controlled Facility Operations for Airports & Enterprise
+AI Rest Room™ Commercial License Agreement
 
-**AI Rest Room™** is a Human-in-the-Loop (HITL) system that turns cleaning operations into a **measurable, AI-supervised workflow**—combining camera validation, real-time feedback, and frontline input to deliver consistent quality, transparency, and cost control.
+Copyright (c) 2026 Saai Dutch Scrap Corporation (USA)
 
----
+This software, system, and associated technologies ("AI Rest Room™") are proprietary to Saai Dutch Scrap Corporation.
 
-## 🚀 Investment Highlights
+The code available in this repository is provided under the MIT License for demonstration and development purposes only.
 
-- **Closed-Loop AI System**: Capture → Analyze → Act → Verify → Improve  
-- **Real-Time Quality Control**: Before/After camera validation with AI scoring  
-- **Operational Transparency**: Audit-ready logs for contracts and compliance  
-- **Behavior + Incentives**: Reward engine aligns worker actions with outcomes  
-- **Sustainability Data**: Waste (kg), material usage, and optimization insights  
-- **Scalable Use Cases**: Airports, rail, malls, hospitals, corporate campuses  
+Commercial use, including but not limited to:
+- Deployment in real environments
+- Integration into business operations
+- Use in cleaning or facility management services
+- Resale or sublicensing
+- Modification for commercial purposes
 
----
+REQUIRES a separate written commercial license agreement with:
 
-## 🧠 Product Overview
+Saai Dutch Scrap Corporation (USA)
 
-**What it does**
-- Guides frontline workers through structured tasks  
-- Validates outcomes via AI (image-based)  
-- Flags issues instantly and enforces rechecks  
-- Stores data for reporting, optimization, and audits  
+Unauthorized commercial use is strictly prohibited.
 
-**Why it matters**
-- Reduces supervision overhead  
-- Increases consistency and accountability  
-- Enables performance-based contracts  
-- Unlocks data-driven cost reduction  
+For licensing inquiries:
+Website: https://www.saaidutchscrapcorp.us/
+Email: s.pasupathi@saaidutchscrapcorp.us
+LinkedIn: https://www.linkedin.com/in/pasupathi-suriya0031681996655/
 
----
+Saai Dutch Scrap Corporation reserves all rights to:
+- AI models
+- system architecture
+- workflow design
+- data processing methods
+- reward and scoring systems
 
-## 🔄 Core Workflow
+THE SOFTWARE IS PROVIDED "AS IS" FOR DEMONSTRATION PURPOSES ONLY.
 
-Start Work  
-→ **Before Scan (AI Read)**  
-→ ⚠️ Floor Safety First  
-→ Cleaning Tasks (Toilet / Urinal / Washbasin / Waste / Surfaces)  
-→ **AI Scan (during work)**  
-→ Final Check  
-→ **After Scan (AI Review)**  
-→ Score & Feedback  
-→ Reporting (damage, materials, waste)  
-→ Rewards & Continuous Improvement  
 
----
 
-## 🧹 Task System (Sample)
+MIT License
 
-- ⚠️ Floor Safety  
-- 🧻 Paper & Hygiene Refill  
-- 🚽 Toilet Cleaning  
-- 🚹 Urinal Cleaning  
-- 🚰 Washbasin Cleaning  
-- 🗑️ Waste Management  
-- 🪞 Mirror / Glass  
-- 🌬️ Environment Check  
-- ✅ Final Inspection  
+Copyright (c) 2026 Suriya Pasupathi
 
----
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## 🌱 Sustainability & Reporting
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-- Waste tracking (kg)  
-- Material usage (paper, chemicals, PPE)  
-- Trend analysis for reduction and cost control  
-- Transparent data for tenders and audits  
-
----
-
-## 🎯 Incentives & Performance
-
-- AI-driven scoring per task/scan  
-- Points & rewards for quality and consistency  
-- Team-level dashboards for managers  
-
----
-
-## 🏗️ Technology
-
-- **Backend**: Node.js (Cloud Run)  
-- **Frontend**: HTML / CSS / JavaScript (progressing to React)  
-- **AI Layer**: Image analysis (OpenCV/YOLO – staged rollout)  
-- **Data Layer**: MongoDB / Firestore (planned)  
-
----
-
-## 🏢 Corporate Structure
-
-- **USA Entity**: *Saai Dutch Scrap Corporation*  
-  - **Share Pool**: 247,000,000 authorized shares (for structured investor participation)
-
-- **EU Operations**: *Yaametal B.V.* (Netherlands)
-
-- **Inventor / Founder**: **Suriya Pasupathi**
-
-> Structure supports international deployment, partnerships, and future financing rounds.
-
----
-
-## 🔐 Intellectual Property & Use
-
-AI Rest Room™ is a **proprietary system concept**.  
-This repository contains **demonstration code and prototypes**.
-
-- Commercial use, system replication, or deployment requires authorization.  
-- MIT License applies to code in this repository (see `LICENSE`).  
-
----
-
-## 🤝 Partnerships
-
-We are actively exploring:
-- Airport & facility pilot programs  
-- Strategic partnerships with cleaning service providers  
-- Data-driven contract models  
-- Seed/early-stage investment  
-
----
-
-## 📬 Contact
-
-- Email: yaametal@gmail.com
-- @InventorSuriya
-- LinkedIn: https://www.linkedin.com/in/pasupathi-suriya0031681996655/  
- - https://www.saaidutchscrapcorp.us/
-**Open to collaboration, pilot projects, and investment discussions.**
-
----
-
-## 📄 License
-
-MIT License — see `LICENSE` file.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
