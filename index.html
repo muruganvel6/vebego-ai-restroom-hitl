@@ -1,750 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Rest Room™ | U1 Receiver Style</title>
-  <style>
-    :root {
-      --bg: #ececec;
-      --frame: #f5f5f5;
-      --line: #8f8f8f;
-      --line-dark: #5c5c5c;
-      --text: #1a1a1a;
-      --muted: #6b6b6b;
-      --panel: #ffffff;
-      --soft: #e6e6e6;
-      --soft-2: #d8d8d8;
-      --accent: #4d7cff;
-      --accent-soft: #dbe6ff;
-      --success: #1f9d52;
-      --warn: #d98b00;
-      --danger: #c43b3b;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Rest Room™</title>
 
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      padding: 14px;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
 
-    .frame {
-      max-width: 1400px;
-      margin: 0 auto;
-      border: 2px solid var(--line-dark);
-      background: var(--frame);
-      box-shadow: 0 4px 18px rgba(0,0,0,.08);
-    }
+/* TOP BAR */
+.header {
+  background: #3c3c3c;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
 
-    .topbar {
-      background: #3d3939;
-      color: #fff;
-      min-height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 14px;
-      border-bottom: 1px solid #252525;
-    }
+.tabs {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: #e9e9e9;
+}
 
-    .topbar .brand {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -.02em;
-    }
+.tab {
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
 
-    .topbar .meta {
-      display: flex;
-      gap: 18px;
-      font-size: 16px;
-    }
+/* MAIN LAYOUT */
+.container {
+  display: grid;
+  grid-template-columns: 260px 1fr 350px;
+  gap: 10px;
+  padding: 10px;
+}
 
-    .menu-row {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      border-bottom: 1px solid var(--line);
-    }
+/* LEFT PANEL */
+.sidebar {
+  background: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
 
-    .menu-left {
-      padding: 14px 16px;
-      font-size: 20px;
-    }
+.profile {
+  text-align: center;
+}
 
-    .menu-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      padding: 8px 12px;
-      flex-wrap: wrap;
-    }
+.profile img {
+  width: 60px;
+  border-radius: 50%;
+}
 
-    .menu-btn {
-      min-width: 120px;
-      text-align: center;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-right: 0;
-      background: #f7f7f7;
-      cursor: pointer;
-      font-size: 16px;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
 
-    .menu-btn:last-child { border-right: 1px solid var(--line); }
-    .menu-btn.active { background: var(--accent-soft); font-weight: 700; }
+.card {
+  background: #f8f8f8;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-    .layout {
-      display: grid;
-      grid-template-columns: 320px 1fr 360px;
-      min-height: 820px;
-    }
+.card:hover {
+  background: #e2f0ff;
+}
 
-    .sidebar,
-    .content,
-    .rightbar {
-      min-width: 0;
-    }
+/* CENTER */
+.main {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
 
-    .sidebar {
-      border-right: 1px solid var(--line);
-      background: #efefef;
-    }
+.camera {
+  height: 200px;
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .profile-box {
-      display: grid;
-      grid-template-columns: 54px 1fr;
-      gap: 12px;
-      align-items: center;
-      padding: 18px 14px;
-      border-bottom: 1px solid var(--line);
-    }
+.control {
+  margin-top: 10px;
+}
 
-    .avatar {
-      width: 40px;
-      height: 46px;
-      border: 1px solid var(--line);
-      background: #ddd;
-      display: grid;
-      place-items: center;
-      font-size: 11px;
-      text-align: center;
-    }
+.control .card {
+  border-radius: 8px;
+}
 
-    .profile-name { font-size: 18px; margin-bottom: 6px; }
+/* RIGHT PANEL */
+.dashboard {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
 
-    .profile-btn {
-      display: inline-block;
-      border: 1px solid var(--line);
-      background: #fafafa;
-      padding: 6px 12px;
-      font-size: 14px;
-    }
+.progress {
+  margin-top: 10px;
+}
 
-    .side-section {
-      padding: 12px 14px 4px;
-    }
+.bar {
+  height: 8px;
+  background: #ddd;
+  margin-top: 5px;
+}
 
-    .side-section h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
+.bar-fill {
+  height: 8px;
+  background: green;
+}
 
-    .topic-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 10px;
-      padding-bottom: 10px;
-    }
+/* MODAL LEVEL 2 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: rgba(0,0,0,0.5);
+}
 
-    .topic-card {
-      border: 1px solid var(--line);
-      background: #fafafa;
-      min-height: 92px;
-      padding: 8px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      cursor: pointer;
-      transition: .15s ease;
-    }
+.modal-content {
+  background: white;
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+}
 
-    .topic-card:hover,
-    .topic-card.active {
-      background: var(--accent-soft);
-      border-color: var(--accent);
-    }
-
-    .topic-icon {
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
-
-    .topic-title {
-      font-size: 13px;
-      line-height: 1.2;
-      font-weight: 700;
-    }
-
-    .workflow-list {
-      margin: 0;
-      padding: 0 0 12px 18px;
-      line-height: 1.45;
-      font-size: 14px;
-    }
-
-    .workflow-list li { margin-bottom: 5px; }
-    .sub-list { margin-top: 5px; color: var(--muted); }
-
-    .content {
-      background: #f8f8f8;
-      display: grid;
-      grid-template-rows: auto auto 1fr;
-    }
-
-    .hero-panel {
-      padding: 16px 14px 10px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .video-box {
-      border: 1px solid var(--line-dark);
-      background: #a7a4a4;
-      min-height: 270px;
-      padding: 6px;
-      position: relative;
-    }
-
-    .video-inner {
-      height: 100%;
-      border: 1px solid var(--line-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 18px;
-      text-align: center;
-      background: linear-gradient(180deg, #9f9b9b, #9c9898);
-    }
-
-    .video-label {
-      position: absolute;
-      top: 10px;
-      left: 12px;
-      font-size: 12px;
-      color: #fff;
-      opacity: .9;
-    }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: 700;
-      padding: 10px 14px 0;
-    }
-
-    .mode-tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .mode-tab {
-      border: 1px solid var(--line);
-      background: #fff;
-      padding: 8px 12px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .mode-tab.active { background: var(--accent-soft); border-color: var(--accent); }
-
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 0;
-      min-height: 420px;
-    }
-
-    .related-panel {
-      border-right: 1px solid var(--line);
-      padding: 12px;
-    }
-
-    .tab-row {
-      display: flex;
-      gap: 0;
-      margin-bottom: 12px;
-    }
-
-    .tab {
-      padding: 7px 14px;
-      border: 1px solid var(--line);
-      border-right: 0;
-      background: #efefef;
-      font-size: 14px;
-      min-width: 88px;
-      text-align: center;
-    }
-
-    .tab:last-child { border-right: 1px solid var(--line); }
-    .tab.active { background: #fff; font-weight: 700; }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 14px;
-    }
-
-    .mini-card {
-      text-align: center;
-      font-size: 13px;
-    }
-
-    .mini-thumb {
-      height: 84px;
-      border: 1px solid var(--soft-2);
-      background: #dedede;
-      margin-bottom: 8px;
-    }
-
-    .detail-panel {
-      padding: 10px 12px 12px;
-      display: grid;
-      gap: 10px;
-      align-content: start;
-    }
-
-    .box {
-      border: 1px solid var(--line);
-      background: #efefef;
-    }
-
-    .box h4 {
-      margin: 0;
-      padding: 6px 10px;
-      font-size: 18px;
-      border-bottom: 1px solid var(--line);
-      background: #e7e7e7;
-    }
-
-    .box .body {
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    .switch-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--line);
-    }
-
-    .switch-row div {
-      text-align: center;
-      padding: 8px 0;
-      font-weight: 700;
-      border-right: 1px solid var(--line);
-    }
-
-    .switch-row div:last-child { border-right: 0; color: #888; }
-
-    .mode-view {
-      display: none;
-      border: 1px solid var(--line);
-      background: #fff;
-      padding: 12px;
-      min-height: 220px;
-    }
-
-    .mode-view.active { display: block; }
-
-    .mode-view h4 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-
-    .mode-view ul {
-      margin: 0;
-      padding-left: 18px;
-      line-height: 1.55;
-      font-size: 14px;
-    }
-
-    .rightbar {
-      border-left: 1px solid var(--line);
-      background: #efefef;
-      padding: 14px;
-      display: grid;
-      align-content: start;
-      gap: 12px;
-    }
-
-    .status-box {
-      border: 1px solid var(--line);
-      background: #f8f8f8;
-      padding: 12px;
-    }
-
-    .status-box h4 {
-      margin: 0 0 8px;
-      font-size: 17px;
-    }
-
-    .status-box p {
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .footer {
-      background: #3d3939;
-      color: #fff;
-      text-align: center;
-      padding: 10px 12px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 1200px) {
-      .layout { grid-template-columns: 290px 1fr; }
-      .rightbar { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); }
-    }
-
-    @media (max-width: 860px) {
-      .menu-row, .layout, .main-grid { grid-template-columns: 1fr; }
-      .sidebar, .related-panel { border-right: 0; }
-      .rightbar { border-top: 1px solid var(--line); }
-      .card-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-  </style>
+button {
+  padding: 8px 12px;
+}
+</style>
 </head>
+
 <body>
-  <div class="frame">
-    <div class="topbar">
-      <div class="brand">AI Rest Room™</div>
-      <div class="meta"><span>Contact</span><span>Logout</span></div>
+
+<div class="header">
+  <div>AI Rest Room™</div>
+  <div>Contact | Logout</div>
+</div>
+
+<div class="tabs">
+  <div class="tab">Worker</div>
+  <div class="tab">AI Supervisor</div>
+  <div class="tab">Team Leader</div>
+  <div class="tab">Operations</div>
+  <div class="tab">Super AI</div>
+</div>
+
+<div class="container">
+
+  <!-- LEFT -->
+  <div class="sidebar">
+    <div class="profile">
+      <img src="https://i.pravatar.cc/100">
+      <h3>Lakshmi 007</h3>
     </div>
 
-    <div class="menu-row">
-      <div class="menu-left">U1 Receiver</div>
-      <div class="menu-right">
-        <div class="menu-btn">Broadcast</div>
-        <div class="menu-btn active">Library</div>
-        <div class="menu-btn">Devices</div>
-        <div class="menu-btn">Services</div>
-        <div class="menu-btn">Upload</div>
-      </div>
+    <h4>Task Job</h4>
+    <div class="grid">
+      <div class="card" onclick="openTask('Start Work')">▶ Start Work</div>
+      <div class="card" onclick="openTask('Floor Safety')">⚠ Floor Safety</div>
+      <div class="card" onclick="openTask('Toilet')">🚽 Toilet</div>
+      <div class="card" onclick="openTask('Urinal')">🚹 Urinal</div>
+      <div class="card" onclick="openTask('Supplies')">🧻 Supplies</div>
+      <div class="card" onclick="openTask('Washbasin')">🚰 Washbasin</div>
+      <div class="card" onclick="openTask('Mirror')">🪞 Mirror</div>
+      <div class="card" onclick="openTask('Report')">📊 Report</div>
     </div>
 
-    <div class="layout">
-      <aside class="sidebar">
-        <div class="profile-box">
-          <div class="avatar">Image<br>of<br>user</div>
-          <div>
-            <div class="profile-name">Lakshmi 007</div>
-            <span class="profile-btn">Modify Profile</span>
-          </div>
-        </div>
-
-        <div class="side-section">
-          <h3>Task Job</h3>
-          <div class="topic-grid">
-            <div class="topic-card active" onclick="showTopic('start')">
-              <div>
-                <div class="topic-icon">▶️</div>
-                <div class="topic-title">Start Work</div>
-              </div>
-            </div>
-            <div class="topic-card" onclick="showTopic('floor')">
-              <div>
-                <div class="topic-icon">⚠️</div>
-                <div class="topic-title">Floor Safety</div>
-              </div>
-            </div>
-            <div class="topic-card" onclick="showTopic('toilet')">
-              <div>
-                <div class="topic-icon">🚽</div>
-                <div class="topic-title">Toilet Cleaning</div>
-              </div>
-            </div>
-            <div class="topic-card" onclick="showTopic('urinal')">
-              <div>
-                <div class="topic-icon">🚹</div>
-                <div class="topic-title">Urinal Cleaning</div>
-              </div>
-            </div>
-            <div class="topic-card" onclick="showTopic('supplies')">
-              <div>
-                <div class="topic-icon">🧻</div>
-                <div class="topic-title">Supplies</div>
-              </div>
-            </div>
-            <div class="topic-card" onclick="showTopic('wash')">
-              <div>
-                <div class="topic-icon">🚰</div>
-                <div class="topic-title">Washbasin</div>
-              </div>
-            </div>
-            <div class="topic-card" onclick="showTopic('glass')">
-              <div>
-                <div class="topic-icon">🪞</div>
-                <div class="topic-title">Mirror / Glass</div>
-              </div>
-            </div>
-            <div class="topic-card" onclick="showTopic('report')">
-              <div>
-                <div class="topic-icon">📊</div>
-                <div class="topic-title">Reporting</div>
-              </div>
-            </div>
-            <div class="topic-card" onclick="showTopic('scan')">
-              <div>
-                <div class="topic-icon">🤖</div>
-                <div class="topic-title">AI Scan Loop</div>
-              </div>
-            </div>
-            <div class="topic-card" onclick="showTopic('reward')">
-              <div>
-                <div class="topic-icon">🎯</div>
-                <div class="topic-title">Rewards</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="side-section">
-          <h3>Level 2 Workflow</h3>
-          <div id="topic-start" class="topic-detail">
-            <ul class="workflow-list">
-              <li>▶️ Start Work</li>
-              <li>📷 Start Camera Scan (Before)</li>
-              <li>🤖 Send AI Supervisor → Read</li>
-              <li>🔚 After Work</li>
-              <li>📷 Start Camera Scan (After)</li>
-              <li>🤖 Send AI Supervisor</li>
-            </ul>
-          </div>
-          <div id="topic-floor" class="topic-detail" style="display:none;">
-            <ul class="workflow-list">
-              <li>⚠️ Floor Safety First</li>
-              <li>👀 Check floor, tables, corners</li>
-              <li class="sub-list">hazards, water, trash</li>
-              <li>✅ Final Check</li>
-            </ul>
-          </div>
-          <div id="topic-toilet" class="topic-detail" style="display:none;">
-            <ul class="workflow-list">
-              <li>🚽 Toilet Cleaning</li>
-              <li class="sub-list">Toilet Bril (Seat)</li>
-              <li class="sub-list">Toilet Floor</li>
-              <li class="sub-list">Hand Sanitizer / Wet Wipes</li>
-              <li class="sub-list">Period Boxes (Lades)</li>
-            </ul>
-          </div>
-          <div id="topic-urinal" class="topic-detail" style="display:none;">
-            <ul class="workflow-list">
-              <li>🚹 Urinal Cleaning</li>
-              <li class="sub-list">Urinal</li>
-              <li class="sub-list">Urinal Floor</li>
-            </ul>
-          </div>
-          <div id="topic-supplies" class="topic-detail" style="display:none;">
-            <ul class="workflow-list">
-              <li>🧻 Tissue Refill</li>
-              <li>🧻 Hand Towel Refill</li>
-              <li>🧴 Soap Refill</li>
-              <li>🧴 Hand Sanitizer</li>
-              <li>📦 Materials Used</li>
-              <li class="sub-list">Toilet Papers</li>
-              <li class="sub-list">Hand Papers</li>
-              <li class="sub-list">Chemicals</li>
-              <li class="sub-list">Hand Gloves</li>
-              <li class="sub-list">Mask</li>
-              <li class="sub-list">Etc</li>
-            </ul>
-          </div>
-          <div id="topic-wash" class="topic-detail" style="display:none;">
-            <ul class="workflow-list">
-              <li>🚰 Washbasin Cleaning</li>
-              <li>🗑️ Waste Bins Remove</li>
-            </ul>
-          </div>
-          <div id="topic-glass" class="topic-detail" style="display:none;">
-            <ul class="workflow-list">
-              <li>🪞 Mirror / Glass Cleaning</li>
-            </ul>
-          </div>
-          <div id="topic-report" class="topic-detail" style="display:none;">
-            <ul class="workflow-list">
-              <li>📊 Reporting</li>
-              <li>⚠️ Report Damage to AI</li>
-              <li>🌱 Sustainability Report</li>
-              <li>⚖️ Report Waste (kg)</li>
-            </ul>
-          </div>
-          <div id="topic-scan" class="topic-detail" style="display:none;">
-            <ul class="workflow-list">
-              <li>🤖 AI Scan Loop</li>
-              <li>▶️ Run AI Scan → AI Response</li>
-              <li>▶️ Run AI Scan → AI Response</li>
-            </ul>
-          </div>
-          <div id="topic-reward" class="topic-detail" style="display:none;">
-            <ul class="workflow-list">
-              <li>🎯 Rewards</li>
-              <li>⭐ Each AI Scan = Points / Rewards</li>
-              <li>🧠 Innovation</li>
-              <li>💡 Share ideas & improvements</li>
-              <li>🚀 Core Idea</li>
-              <li class="sub-list">AI saves human lifetime</li>
-              <li class="sub-list">Humans improve the system</li>
-            </ul>
-          </div>
-        </div>
-      </aside>
-
-      <main class="content">
-        <div class="hero-panel">
-          <div class="video-box">
-            <div class="video-label">📷 Camera Scan Panel</div>
-            <div class="video-inner">Play hear feel</div>
-          </div>
-        </div>
-
-        <div class="mode-tabs">
-          <button class="mode-tab active" onclick="showMode('worker', this)">Worker</button>
-          <button class="mode-tab" onclick="showMode('supervisor', this)">AI Supervisor</button>
-          <button class="mode-tab" onclick="showMode('teamleader', this)">Team Leader</button>
-          <button class="mode-tab" onclick="showMode('operations', this)">Operations Leader</button>
-          <button class="mode-tab" onclick="showMode('superai', this)">Super AI</button>
-          <button class="mode-tab" onclick="showMode('sustainability', this)">Sustainability</button>
-        </div>
-
-        <div class="main-grid">
-          <section class="related-panel">
-            <div class="section-title">AI Rest Room™ — Frontline Control View</div>
-            <div class="tab-row">
-              <div class="tab active">Recent</div>
-              <div class="tab">Popular</div>
-              <div class="tab">Most Emailed</div>
-              <div class="tab">Browse All</div>
-            </div>
-            <div class="card-grid">
-              <div class="mini-card"><div class="mini-thumb"></div>Floor Safety</div>
-              <div class="mini-card"><div class="mini-thumb"></div>Tissue Refill</div>
-              <div class="mini-card"><div class="mini-thumb"></div>Toilet Cleaning</div>
-              <div class="mini-card"><div class="mini-thumb"></div>AI Review</div>
-              <div class="mini-card"><div class="mini-thumb"></div>Washbasin</div>
-              <div class="mini-card"><div class="mini-thumb"></div>Urinal</div>
-              <div class="mini-card"><div class="mini-thumb"></div>Damage Report</div>
-              <div class="mini-card"><div class="mini-thumb"></div>Rewards</div>
-            </div>
-          </section>
-
-          <section class="detail-panel">
-            <div class="box">
-              <h4>Select Country Language</h4>
-              <div class="body">India</div>
-            </div>
-            <div class="box">
-              <h4>Select Category</h4>
-              <div class="switch-row"><div>Audio</div><div>Video</div></div>
-              <div class="body">Society &amp; Culture</div>
-            </div>
-            <div class="mode-view active" id="mode-worker">
-              <h4>Worker View</h4>
-              <ul>
-                <li>Step-by-step task workflow</li>
-                <li>Before and after camera scan actions</li>
-                <li>Materials used and issue reporting</li>
-                <li>AI scan loop and instant response</li>
-              </ul>
-            </div>
-            <div class="mode-view" id="mode-supervisor">
-              <h4>AI Supervisor View</h4>
-              <ul>
-                <li>Read worker image input</li>
-                <li>Return cleaning score and issues</li>
-                <li>Flag hazards, missed steps, and risks</li>
-                <li>Approve or send back for improvement</li>
-              </ul>
-            </div>
-            <div class="mode-view" id="mode-teamleader">
-              <h4>Team Leader View</h4>
-              <ul>
-                <li>Monitor team progress by task</li>
-                <li>See repeated issues and worker support needs</li>
-                <li>Track rewards, compliance, and completion</li>
-              </ul>
-            </div>
-            <div class="mode-view" id="mode-operations">
-              <h4>Operations Leader View</h4>
-              <ul>
-                <li>High-level service quality control</li>
-                <li>Pattern detection by zone and shift</li>
-                <li>Resource planning and escalation visibility</li>
-              </ul>
-            </div>
-            <div class="mode-view" id="mode-superai">
-              <h4>Super AI View</h4>
-              <ul>
-                <li>Cross-service intelligence engine</li>
-                <li>Image learning, workflow understanding, and continuous optimization</li>
-                <li>Scales beyond restroom to other services</li>
-              </ul>
-            </div>
-            <div class="mode-view" id="mode-sustainability">
-              <h4>Sustainability View</h4>
-              <ul>
-                <li>Waste (kg) reporting</li>
-                <li>Chemical and material tracking</li>
-                <li>Transparent sustainable operations insight</li>
-              </ul>
-            </div>
-          </section>
-        </div>
-      </main>
-
-      <aside class="rightbar">
-        <div class="status-box">
-          <h4>Status</h4>
-          <p>Not started</p>
-        </div>
-        <div class="status-box">
-          <h4>AI Score</h4>
-          <p>0</p>
-        </div>
-        <div class="status-box">
-          <h4>Rewards</h4>
-          <p>0 Points</p>
-        </div>
-        <div class="status-box">
-          <h4>Lists</h4>
-          <p>History<br>Fashion<br>Issues &amp; Causes<br>Life &amp; Death<br>Men</p>
-        </div>
-      </aside>
-    </div>
-
-    <div class="footer">2026 YaaUniverse.com. All rights reserved.</div>
+    <h4>Workflow</h4>
+    <ul>
+      <li>Start Work</li>
+      <li>Camera Scan (Before)</li>
+      <li>Send AI</li>
+      <li>Clean</li>
+      <li>Camera Scan (After)</li>
+      <li>Submit</li>
+    </ul>
   </div>
 
-  <script>
-    function showTopic(name) {
-      document.querySelectorAll('.topic-card').forEach(card => card.classList.remove('active'));
-      event.currentTarget.classList.add('active');
-      document.querySelectorAll('.topic-detail').forEach(box => box.style.display = 'none');
-      document.getElementById('topic-' + name).style.display = 'block';
-    }
+  <!-- CENTER -->
+  <div class="main">
+    <div class="camera">
+      📷 Camera Scan Panel
+    </div>
 
-    function showMode(name, btn) {
-      document.querySelectorAll('.mode-tab').forEach(tab => tab.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.mode-view').forEach(view => view.classList.remove('active'));
-      document.getElementById('mode-' + name).classList.add('active');
-    }
-  </script>
+    <div class="control">
+      <h3>Frontline Control</h3>
+      <div class="grid">
+        <div class="card">Start</div>
+        <div class="card">Safety</div>
+        <div class="card">Refill</div>
+        <div class="card">Urinal</div>
+        <div class="card">Washbasin</div>
+        <div class="card">Mirror</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="dashboard">
+    <h3>Dashboard</h3>
+
+    <div class="progress">
+      Toilet Cleaned 58%
+      <div class="bar"><div class="bar-fill" style="width:58%"></div></div>
+    </div>
+
+    <div class="progress">
+      Urinal Cleaned 45%
+      <div class="bar"><div class="bar-fill" style="width:45%"></div></div>
+    </div>
+
+    <div class="progress">
+      Washbasin 48%
+      <div class="bar"><div class="bar-fill" style="width:48%"></div></div>
+    </div>
+
+    <h4>AI Alert</h4>
+    <p>⚠ Water spill detected</p>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3 id="taskTitle"></h3>
+
+    <button onclick="startScan()">📷 Start Scan</button>
+    <button onclick="sendAI()">🤖 Send to AI</button>
+    <button onclick="completeTask()">✅ Complete</button>
+
+    <br><br>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+function openTask(task) {
+  document.getElementById("modal").style.display = "block";
+  document.getElementById("taskTitle").innerText = task;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+function startScan() {
+  alert("Camera Activated");
+}
+
+function sendAI() {
+  alert("Sending to AI Supervisor...");
+}
+
+function completeTask() {
+  alert("Task Completed!");
+}
+</script>
+
 </body>
 </html>
