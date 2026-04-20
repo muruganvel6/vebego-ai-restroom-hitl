@@ -1,280 +1,665 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AI Rest Room™</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Rest Room™</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --panel: #ffffff;
+      --line: #d8dce3;
+      --text: #222;
+      --muted: #6b7280;
+      --dark: #3b3b3b;
+      --accent: #dbeafe;
+      --accent-strong: #3b82f6;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 8px 24px rgba(0,0,0,.08);
+      --radius: 14px;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-}
+    * { box-sizing: border-box; }
 
-/* TOP BAR */
-.header {
-  background: #3c3c3c;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-.tabs {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  background: #e9e9e9;
-}
+    .header {
+      background: var(--dark);
+      color: white;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      font-weight: 700;
+    }
 
-.tab {
-  padding: 6px 12px;
-  background: white;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
+    .header-right {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: #f3f4f6;
+    }
 
-/* MAIN LAYOUT */
-.container {
-  display: grid;
-  grid-template-columns: 260px 1fr 350px;
-  gap: 10px;
-  padding: 10px;
-}
+    .tabs {
+      display: flex;
+      gap: 10px;
+      padding: 12px 14px;
+      background: #e9edf2;
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
 
-/* LEFT PANEL */
-.sidebar {
-  background: white;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
+    .tab {
+      padding: 10px 16px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: .2s ease;
+    }
 
-.profile {
-  text-align: center;
-}
+    .tab:hover,
+    .tab.active {
+      background: var(--accent);
+      border-color: #9ec5ff;
+      color: #0f3d91;
+    }
 
-.profile img {
-  width: 60px;
-  border-radius: 50%;
-}
+    .container {
+      display: grid;
+      grid-template-columns: 280px 1fr 360px;
+      gap: 14px;
+      padding: 14px;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 10px;
-}
+    .sidebar,
+    .main,
+    .dashboard {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
 
-.card {
-  background: #f8f8f8;
-  padding: 15px;
-  text-align: center;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  transition: 0.2s;
-}
+    .sidebar,
+    .main,
+    .dashboard {
+      min-height: calc(100vh - 130px);
+    }
 
-.card:hover {
-  background: #e2f0ff;
-}
+    .sidebar {
+      padding: 14px;
+    }
 
-/* CENTER */
-.main {
-  background: white;
-  border: 1px solid #ccc;
-  padding: 10px;
-}
+    .profile {
+      text-align: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
 
-.camera {
-  height: 200px;
-  background: #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .profile img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 3px solid #eef2ff;
+    }
 
-.control {
-  margin-top: 10px;
-}
+    .profile h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
 
-.control .card {
-  border-radius: 8px;
-}
+    .profile small {
+      color: var(--muted);
+    }
 
-/* RIGHT PANEL */
-.dashboard {
-  background: white;
-  border: 1px solid #ccc;
-  padding: 10px;
-}
+    .section-title {
+      margin: 18px 0 10px;
+      font-size: 16px;
+      font-weight: 800;
+    }
 
-.progress {
-  margin-top: 10px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
 
-.bar {
-  height: 8px;
-  background: #ddd;
-  margin-top: 5px;
-}
+    .card {
+      background: #f9fafb;
+      padding: 16px 10px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-weight: 700;
+      min-height: 92px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
 
-.bar-fill {
-  height: 8px;
-  background: green;
-}
+    .card:hover,
+    .card.active {
+      background: #eaf3ff;
+      border-color: #9dc0ff;
+      transform: translateY(-1px);
+    }
 
-/* MODAL LEVEL 2 */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
-  background: rgba(0,0,0,0.5);
-}
+    .emoji {
+      font-size: 26px;
+      line-height: 1;
+    }
 
-.modal-content {
-  background: white;
-  width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-}
+    .workflow {
+      margin: 0;
+      padding-left: 18px;
+      color: #374151;
+      line-height: 1.8;
+      font-size: 14px;
+    }
 
-button {
-  padding: 8px 12px;
-}
-</style>
+    .main {
+      padding: 14px;
+    }
+
+    .camera {
+      min-height: 250px;
+      background: linear-gradient(135deg, #d6d6d6, #bdbdbd);
+      border: 1px solid #b8bcc5;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      font-size: 18px;
+      font-weight: 800;
+      color: #374151;
+    }
+
+    .camera-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(17,24,39,.72);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .overlay-status {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      background: white;
+      border: 2px solid var(--success);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .control {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .control-header {
+      padding: 14px;
+      background: #f9fafb;
+      border-bottom: 1px solid var(--line);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .control .grid {
+      padding: 12px;
+      margin-top: 0;
+    }
+
+    .task-info {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fbfdff;
+    }
+
+    .task-info h4 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .task-info p {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.65;
+    }
+
+    .task-actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: white;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button.primary {
+      background: var(--accent-strong);
+      border-color: var(--accent-strong);
+      color: white;
+    }
+
+    button.success {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .dashboard {
+      padding: 14px;
+    }
+
+    .dashboard h3 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .metric-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .progress {
+      margin-top: 12px;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .bar {
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #60a5fa);
+      border-radius: 999px;
+    }
+
+    .alerts {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #fff8eb;
+      border: 1px solid #fde7b0;
+    }
+
+    .alerts h4 {
+      margin: 0 0 8px;
+    }
+
+    .alerts p {
+      margin: 0;
+      color: #7c5400;
+      line-height: 1.6;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      background: rgba(0,0,0,0.45);
+      padding: 20px;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      width: min(460px, 100%);
+      margin: 80px auto;
+      padding: 22px;
+      border-radius: 18px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.2);
+    }
+
+    .modal-content h3 {
+      margin: 0 0 8px;
+    }
+
+    .modal-content p {
+      margin: 0 0 16px;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 1100px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar,
+      .main,
+      .dashboard {
+        min-height: auto;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="header">
-  <div>AI Rest Room™</div>
-  <div>Contact | Logout</div>
-</div>
-
-<div class="tabs">
-  <div class="tab">Worker</div>
-  <div class="tab">AI Supervisor</div>
-  <div class="tab">Team Leader</div>
-  <div class="tab">Operations</div>
-  <div class="tab">Super AI</div>
-</div>
-
-<div class="container">
-
-  <!-- LEFT -->
-  <div class="sidebar">
-    <div class="profile">
-      <img src="https://i.pravatar.cc/100">
-      <h3>Lakshmi 007</h3>
+  <div class="header">
+    <div>AI Rest Room™</div>
+    <div class="header-right">
+      <span>Contact</span>
+      <span>Logout</span>
     </div>
-
-    <h4>Task Job</h4>
-    <div class="grid">
-      <div class="card" onclick="openTask('Start Work')">▶ Start Work</div>
-      <div class="card" onclick="openTask('Floor Safety')">⚠ Floor Safety</div>
-      <div class="card" onclick="openTask('Toilet')">🚽 Toilet</div>
-      <div class="card" onclick="openTask('Urinal')">🚹 Urinal</div>
-      <div class="card" onclick="openTask('Supplies')">🧻 Supplies</div>
-      <div class="card" onclick="openTask('Washbasin')">🚰 Washbasin</div>
-      <div class="card" onclick="openTask('Mirror')">🪞 Mirror</div>
-      <div class="card" onclick="openTask('Report')">📊 Report</div>
-    </div>
-
-    <h4>Workflow</h4>
-    <ul>
-      <li>Start Work</li>
-      <li>Camera Scan (Before)</li>
-      <li>Send AI</li>
-      <li>Clean</li>
-      <li>Camera Scan (After)</li>
-      <li>Submit</li>
-    </ul>
   </div>
 
-  <!-- CENTER -->
-  <div class="main">
-    <div class="camera">
-      📷 Camera Scan Panel
+  <div class="tabs">
+    <div class="tab active" onclick="setRole(this, 'Worker')">Worker</div>
+    <div class="tab" onclick="setRole(this, 'AI Supervisor')">AI Supervisor</div>
+    <div class="tab" onclick="setRole(this, 'Team Leader')">Team Leader</div>
+    <div class="tab" onclick="setRole(this, 'Operations')">Operations</div>
+    <div class="tab" onclick="setRole(this, 'Super AI')">Super AI</div>
+  </div>
+
+  <div class="container">
+
+    <div class="sidebar">
+      <div class="profile">
+        <img src="https://i.pravatar.cc/100?img=32" alt="Worker profile" />
+        <h3>Lakshmi 007</h3>
+        <small id="roleLabel">Active View: Worker</small>
+      </div>
+
+      <div class="section-title">Task Job</div>
+      <div class="grid">
+        <div class="card active" onclick="openTask('Start Work', this)"><div class="emoji">▶️</div><div>Start Work</div></div>
+        <div class="card" onclick="openTask('Floor Safety', this)"><div class="emoji">⚠️</div><div>Floor Safety</div></div>
+        <div class="card" onclick="openTask('Toilet Cleaning', this)"><div class="emoji">🚽</div><div>Toilet Cleaning</div></div>
+        <div class="card" onclick="openTask('Urinal Cleaning', this)"><div class="emoji">🚹</div><div>Urinal Cleaning</div></div>
+        <div class="card" onclick="openTask('Supplies Refill', this)"><div class="emoji">🧻</div><div>Supplies Refill</div></div>
+        <div class="card" onclick="openTask('Washbasin Cleaning', this)"><div class="emoji">🚰</div><div>Washbasin</div></div>
+        <div class="card" onclick="openTask('Mirror / Glass', this)"><div class="emoji">🪞</div><div>Mirror / Glass</div></div>
+        <div class="card" onclick="openTask('Damage Report', this)"><div class="emoji">📊</div><div>Report</div></div>
+      </div>
+
+      <div class="section-title">Workflow</div>
+      <ul class="workflow" id="workflowList">
+        <li>Start Work</li>
+        <li>Camera Scan (Before)</li>
+        <li>Send AI</li>
+        <li>Clean</li>
+        <li>Camera Scan (After)</li>
+        <li>Submit</li>
+      </ul>
     </div>
 
-    <div class="control">
-      <h3>Frontline Control</h3>
-      <div class="grid">
-        <div class="card">Start</div>
-        <div class="card">Safety</div>
-        <div class="card">Refill</div>
-        <div class="card">Urinal</div>
-        <div class="card">Washbasin</div>
-        <div class="card">Mirror</div>
+    <div class="main">
+      <div class="camera">
+        <div class="camera-badge">📷 Camera Scan Panel</div>
+        Live Camera / Before & After Scan Area
+        <div class="overlay-status" id="overlayBox">Selected: Start Work</div>
+      </div>
+
+      <div class="control">
+        <div class="control-header">Frontline Control</div>
+        <div class="grid">
+          <div class="card" onclick="quickSelect('Start Work')"><div class="emoji">▶️</div><div>Start</div></div>
+          <div class="card" onclick="quickSelect('Floor Safety')"><div class="emoji">⚠️</div><div>Safety</div></div>
+          <div class="card" onclick="quickSelect('Supplies Refill')"><div class="emoji">🧻</div><div>Refill</div></div>
+          <div class="card" onclick="quickSelect('Urinal Cleaning')"><div class="emoji">🚹</div><div>Urinal</div></div>
+          <div class="card" onclick="quickSelect('Washbasin Cleaning')"><div class="emoji">🚰</div><div>Washbasin</div></div>
+          <div class="card" onclick="quickSelect('Mirror / Glass')"><div class="emoji">🪞</div><div>Mirror</div></div>
+        </div>
+      </div>
+
+      <div class="task-info">
+        <h4 id="taskInfoTitle">Start Work</h4>
+        <p id="taskInfoText">Begin the shift, activate before-scan, and follow AI-guided task flow for the assigned restroom zone.</p>
+
+        <div class="task-actions">
+          <button onclick="startScan()">📷 Start Scan</button>
+          <button class="primary" onclick="sendAI()">🤖 Send to AI</button>
+          <button class="success" onclick="completeTask()">✅ Complete</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- RIGHT -->
-  <div class="dashboard">
-    <h3>Dashboard</h3>
+    <div class="dashboard">
+      <h3>Dashboard</h3>
 
-    <div class="progress">
-      Toilet Cleaned 58%
-      <div class="bar"><div class="bar-fill" style="width:58%"></div></div>
+      <div class="metric-box">
+        <div class="metric"><strong id="scoreValue">58%</strong>Quality Score</div>
+        <div class="metric"><strong id="scanCount">5</strong>AI Scans Today</div>
+      </div>
+
+      <div class="progress">
+        <div class="progress-top"><span>Toilet Cleaned</span><span id="toiletValue">58%</span></div>
+        <div class="bar"><div class="bar-fill" id="toiletBar" style="width:58%"></div></div>
+      </div>
+
+      <div class="progress">
+        <div class="progress-top"><span>Urinal Cleaned</span><span id="urinalValue">45%</span></div>
+        <div class="bar"><div class="bar-fill" id="urinalBar" style="width:45%"></div></div>
+      </div>
+
+      <div class="progress">
+        <div class="progress-top"><span>Washbasin</span><span id="washbasinValue">48%</span></div>
+        <div class="bar"><div class="bar-fill" id="washbasinBar" style="width:48%"></div></div>
+      </div>
+
+      <div class="alerts">
+        <h4>AI Alert</h4>
+        <p id="alertText">⚠ Water spill detected near entrance. Tissue refill recommended in stall 8.</p>
+      </div>
     </div>
 
-    <div class="progress">
-      Urinal Cleaned 45%
-      <div class="bar"><div class="bar-fill" style="width:45%"></div></div>
-    </div>
-
-    <div class="progress">
-      Washbasin 48%
-      <div class="bar"><div class="bar-fill" style="width:48%"></div></div>
-    </div>
-
-    <h4>AI Alert</h4>
-    <p>⚠ Water spill detected</p>
   </div>
 
-</div>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h3 id="taskTitle"></h3>
+      <p id="modalDescription"></p>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h3 id="taskTitle"></h3>
+      <div class="modal-buttons">
+        <button onclick="startScan()">📷 Start Scan</button>
+        <button class="primary" onclick="sendAI()">🤖 Send to AI</button>
+        <button class="success" onclick="completeTask()">✅ Complete</button>
+        <button onclick="closeModal()">Close</button>
+      </div>
 
-    <button onclick="startScan()">📷 Start Scan</button>
-    <button onclick="sendAI()">🤖 Send to AI</button>
-    <button onclick="completeTask()">✅ Complete</button>
-
-    <br><br>
-    <button onclick="closeModal()">Close</button>
+      <div class="muted">Level 2 task workflow opens here for each selected cleaning step.</div>
+    </div>
   </div>
-</div>
 
-<script>
-function openTask(task) {
-  document.getElementById("modal").style.display = "block";
-  document.getElementById("taskTitle").innerText = task;
-}
+  <script>
+    const taskData = {
+      "Start Work": {
+        description: "Begin the shift, activate before-scan, and follow AI-guided task flow for the assigned restroom zone.",
+        workflow: ["Start Work", "Camera Scan (Before)", "Send AI", "Review Assigned Tasks", "Start Cleaning", "Camera Scan (After)", "Submit"]
+      },
+      "Floor Safety": {
+        description: "Check wet floor risks, trash on the ground, corner hazards, and safety-first actions before deep cleaning.",
+        workflow: ["Open Safety Task", "Scan Floor", "Identify Hazards", "Place Warning Sign", "Resolve Spill", "Rescan", "Submit"]
+      },
+      "Toilet Cleaning": {
+        description: "Clean bowl, seat, flush panel, sides, and base area. Confirm visual quality before moving forward.",
+        workflow: ["Before Scan", "Check Toilet Status", "Apply Cleaning", "Wipe and Sanitize", "After Scan", "AI Review", "Complete"]
+      },
+      "Urinal Cleaning": {
+        description: "Clean urinal surface, splash zones, flush area, and odor-risk spots. AI checks if issue remains.",
+        workflow: ["Before Scan", "Review Splash Zone", "Clean Urinal", "Check Water Flow", "After Scan", "AI Review", "Complete"]
+      },
+      "Supplies Refill": {
+        description: "Refill tissue, soap, and related restroom supplies. Verify refill level using scan and status check.",
+        workflow: ["Open Refill Task", "Check Supply Level", "Refill Items", "Organize Area", "After Scan", "AI Confirm", "Complete"]
+      },
+      "Washbasin Cleaning": {
+        description: "Clean basin, tap area, side panels, drain zone, and remove water marks or visible stains.",
+        workflow: ["Before Scan", "Check Basin", "Clean Surface", "Dry Area", "After Scan", "AI Review", "Complete"]
+      },
+      "Mirror / Glass": {
+        description: "Remove streaks, droplets, fingerprints, and edge marks from all mirror or glass surfaces.",
+        workflow: ["Before Scan", "Check Marks", "Wipe Mirror", "Dry Finish", "After Scan", "AI Review", "Complete"]
+      },
+      "Damage Report": {
+        description: "Report broken items, water leaks, refill unit damage, or any maintenance issue for escalation.",
+        workflow: ["Open Report", "Scan Problem", "Add Notes", "Send AI/Supervisor", "Confirm Issue", "Save Report"]
+      }
+    };
 
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
+    let currentTask = "Start Work";
 
-function startScan() {
-  alert("Camera Activated");
-}
+    function setRole(tab, role) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('roleLabel').innerText = `Active View: ${role}`;
+    }
 
-function sendAI() {
-  alert("Sending to AI Supervisor...");
-}
+    function openTask(task, element) {
+      currentTask = task;
+      document.querySelectorAll('.sidebar .card').forEach(card => card.classList.remove('active'));
+      if (element) element.classList.add('active');
 
-function completeTask() {
-  alert("Task Completed!");
-}
-</script>
+      const data = taskData[task] || { description: "Task details not available.", workflow: [] };
+      document.getElementById('taskTitle').innerText = task;
+      document.getElementById('modalDescription').innerText = data.description;
+      document.getElementById('taskInfoTitle').innerText = task;
+      document.getElementById('taskInfoText').innerText = data.description;
+      document.getElementById('overlayBox').innerText = `Selected: ${task}`;
+      renderWorkflow(data.workflow);
+      document.getElementById('modal').style.display = 'block';
+    }
 
+    function quickSelect(task) {
+      currentTask = task;
+      const data = taskData[task] || { description: "Task details not available.", workflow: [] };
+      document.getElementById('taskInfoTitle').innerText = task;
+      document.getElementById('taskInfoText').innerText = data.description;
+      document.getElementById('overlayBox').innerText = `Selected: ${task}`;
+      renderWorkflow(data.workflow);
+    }
+
+    function renderWorkflow(items) {
+      const workflowList = document.getElementById('workflowList');
+      workflowList.innerHTML = '';
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        workflowList.appendChild(li);
+      });
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function startScan() {
+      document.getElementById('alertText').innerText = `📷 Camera activated for ${currentTask}. Before/after scan ready.`;
+      closeModal();
+    }
+
+    function sendAI() {
+      const randomScore = Math.floor(Math.random() * 21) + 75;
+      document.getElementById('scoreValue').innerText = randomScore + '%';
+      document.getElementById('alertText').innerText = `🤖 AI reviewed ${currentTask}. Quality score updated to ${randomScore}%.`;
+      document.getElementById('overlayBox').innerText = `AI Reviewed: ${currentTask}`;
+      closeModal();
+    }
+
+    function completeTask() {
+      const toilet = Math.floor(Math.random() * 21) + 70;
+      const urinal = Math.floor(Math.random() * 21) + 60;
+      const washbasin = Math.floor(Math.random() * 21) + 65;
+      const scans = parseInt(document.getElementById('scanCount').innerText, 10) + 1;
+
+      updateProgress('toilet', toilet);
+      updateProgress('urinal', urinal);
+      updateProgress('washbasin', washbasin);
+      document.getElementById('scanCount').innerText = scans;
+      document.getElementById('alertText').innerText = `✅ ${currentTask} completed and dashboard updated.`;
+      document.getElementById('overlayBox').innerText = `Completed: ${currentTask}`;
+      closeModal();
+    }
+
+    function updateProgress(type, value) {
+      document.getElementById(type + 'Value').innerText = value + '%';
+      document.getElementById(type + 'Bar').style.width = value + '%';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('modal');
+      if (event.target === modal) closeModal();
+    };
+
+    renderWorkflow(taskData['Start Work'].workflow);
+  </script>
 </body>
 </html>
