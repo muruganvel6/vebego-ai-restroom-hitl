@@ -3,838 +3,748 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Rest Room™ | Smart Cleaning Supervision</title>
+  <title>AI Rest Room™ | U1 Receiver Style</title>
   <style>
     :root {
-      --bg: #07111f;
-      --bg-soft: #0e1a2d;
-      --card: rgba(255,255,255,0.08);
-      --line: rgba(255,255,255,0.12);
-      --text: #f5f7fb;
-      --muted: #b7c3d9;
-      --accent: #7c5cff;
-      --accent-2: #19c2ff;
-      --success: #2bd576;
-      --shadow: 0 20px 80px rgba(0,0,0,.35);
-      --radius: 22px;
+      --bg: #ececec;
+      --frame: #f5f5f5;
+      --line: #8f8f8f;
+      --line-dark: #5c5c5c;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --panel: #ffffff;
+      --soft: #e6e6e6;
+      --soft-2: #d8d8d8;
+      --accent: #4d7cff;
+      --accent-soft: #dbe6ff;
+      --success: #1f9d52;
+      --warn: #d98b00;
+      --danger: #c43b3b;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(124,92,255,.26), transparent 28%),
-        radial-gradient(circle at top right, rgba(25,194,255,.18), transparent 28%),
-        linear-gradient(180deg, #09111d 0%, #07111f 55%, #050b14 100%);
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
       color: var(--text);
+      padding: 14px;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .shell {
-      width: min(1200px, calc(100% - 32px));
+    .frame {
+      max-width: 1400px;
       margin: 0 auto;
+      border: 2px solid var(--line-dark);
+      background: var(--frame);
+      box-shadow: 0 4px 18px rgba(0,0,0,.08);
     }
 
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(7,17,31,.55);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .nav-inner {
+    .topbar {
+      background: #3d3939;
+      color: #fff;
+      min-height: 42px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      min-height: 76px;
+      padding: 0 14px;
+      border-bottom: 1px solid #252525;
     }
 
-    .brand {
+    .topbar .brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .topbar .meta {
       display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      font-size: 1.2rem;
+      gap: 18px;
+      font-size: 16px;
     }
 
-    .brand-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
+    .menu-row {
       display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 12px 30px rgba(124,92,255,.34);
-      font-size: 1.15rem;
+      grid-template-columns: 220px 1fr;
+      border-bottom: 1px solid var(--line);
     }
 
-    .nav-links {
+    .menu-left {
+      padding: 14px 16px;
+      font-size: 20px;
+    }
+
+    .menu-right {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      padding: 10px 14px;
-      border-radius: 12px;
-      color: var(--muted);
-      transition: .2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-      background: rgba(255,255,255,.06);
-    }
-
-    .btn {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      border: 1px solid transparent;
-      border-radius: 14px;
-      padding: 14px 18px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: .22s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #fff;
-      box-shadow: 0 18px 40px rgba(124,92,255,.28);
-    }
-
-    .btn-primary:hover { transform: translateY(-2px); }
-
-    .btn-ghost {
-      border-color: rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(255,255,255,.08);
-      transform: translateY(-2px);
-    }
-
-    .hero {
-      padding: 72px 0 54px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      gap: 0;
       padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color: #d8e1f5;
-      font-size: .92rem;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0 0 16px;
-      font-size: clamp(2.6rem, 5vw, 5rem);
-      line-height: .95;
-      letter-spacing: -.05em;
-    }
-
-    .grad {
-      background: linear-gradient(135deg, #fff 0%, #9acaff 38%, #9d8cff 65%, #8bfff0 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.75;
-      max-width: 60ch;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
       flex-wrap: wrap;
-      margin-top: 28px;
     }
 
-    .mini-stats {
+    .menu-btn {
+      min-width: 120px;
+      text-align: center;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-right: 0;
+      background: #f7f7f7;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .menu-btn:last-child { border-right: 1px solid var(--line); }
+    .menu-btn.active { background: var(--accent-soft); font-weight: 700; }
+
+    .layout {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 14px;
-      margin-top: 28px;
+      grid-template-columns: 320px 1fr 360px;
+      min-height: 820px;
     }
 
-    .stat {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: var(--shadow);
+    .sidebar,
+    .content,
+    .rightbar {
+      min-width: 0;
     }
 
-    .stat strong {
-      display: block;
-      font-size: 1.6rem;
+    .sidebar {
+      border-right: 1px solid var(--line);
+      background: #efefef;
+    }
+
+    .profile-box {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 18px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .avatar {
+      width: 40px;
+      height: 46px;
+      border: 1px solid var(--line);
+      background: #ddd;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .profile-name { font-size: 18px; margin-bottom: 6px; }
+
+    .profile-btn {
+      display: inline-block;
+      border: 1px solid var(--line);
+      background: #fafafa;
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+
+    .side-section {
+      padding: 12px 14px 4px;
+    }
+
+    .side-section h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+      padding-bottom: 10px;
+    }
+
+    .topic-card {
+      border: 1px solid var(--line);
+      background: #fafafa;
+      min-height: 92px;
+      padding: 8px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: .15s ease;
+    }
+
+    .topic-card:hover,
+    .topic-card.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .topic-icon {
+      font-size: 26px;
       margin-bottom: 6px;
     }
 
-    .stat span { color: var(--muted); font-size: .92rem; }
-
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 18px;
-      position: relative;
+    .topic-title {
+      font-size: 13px;
+      line-height: 1.2;
+      font-weight: 700;
     }
 
-    .window-bar {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
+    .workflow-list {
+      margin: 0;
+      padding: 0 0 12px 18px;
+      line-height: 1.45;
+      font-size: 14px;
     }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.35);
-    }
+    .workflow-list li { margin-bottom: 5px; }
+    .sub-list { margin-top: 5px; color: var(--muted); }
 
-    .dashboard {
-      background: linear-gradient(180deg, #0c1527, #0a1221);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 22px;
-      overflow: hidden;
+    .content {
+      background: #f8f8f8;
       display: grid;
-      grid-template-columns: 255px 1fr;
-      min-height: 520px;
+      grid-template-rows: auto auto 1fr;
     }
 
-    .panel-left {
-      border-right: 1px solid rgba(255,255,255,.08);
-      padding: 18px;
-      background: rgba(255,255,255,.02);
+    .hero-panel {
+      padding: 16px 14px 10px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .panel-left h3,
-    .panel-right h3 {
-      margin: 0 0 14px;
-      font-size: 1rem;
-      color: #eaf0ff;
-      letter-spacing: -.02em;
-    }
-
-    .topic {
-      padding: 10px 12px;
-      border-radius: 12px;
-      color: var(--muted);
-      margin-bottom: 8px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid transparent;
-      font-size: .94rem;
-    }
-
-    .topic.active {
-      background: linear-gradient(135deg, rgba(124,92,255,.25), rgba(25,194,255,.14));
-      border-color: rgba(124,92,255,.4);
-      color: #fff;
-    }
-
-    .panel-right {
-      padding: 18px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 14px;
-    }
-
-    .top-strip {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .chip {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      color: #dce7ff;
-      font-size: .88rem;
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 14px;
-    }
-
-    .preview-box,
-    .insight-box,
-    .action-row,
-    .info-card,
-    .feature,
-    .step,
-    .service,
-    .cta-box {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px;
-    }
-
-    .preview-box {
+    .video-box {
+      border: 1px solid var(--line-dark);
+      background: #a7a4a4;
       min-height: 270px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background:
-        radial-gradient(circle at 70% 25%, rgba(25,194,255,.18), transparent 26%),
-        linear-gradient(180deg, rgba(124,92,255,.14), rgba(255,255,255,.03));
-    }
-
-    .preview-visual {
-      flex: 1;
-      border-radius: 16px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
-        radial-gradient(circle at 50% 40%, rgba(255,255,255,.12), transparent 25%),
-        #101b2f;
-      border: 1px solid rgba(255,255,255,.06);
+      padding: 6px;
       position: relative;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      color: #dce6ff;
-      font-size: 1.05rem;
     }
 
-    .scan-ring {
-      position: absolute;
-      inset: 18px;
-      border: 1px dashed rgba(25,194,255,.5);
-      border-radius: 18px;
-    }
-
-    .preview-label {
-      color: var(--muted);
-      font-size: .85rem;
-      margin-bottom: 10px;
-    }
-
-    .insight-box {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .score {
+    .video-inner {
+      height: 100%;
+      border: 1px solid var(--line-dark);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.06);
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      text-align: center;
+      background: linear-gradient(180deg, #9f9b9b, #9c9898);
     }
 
-    .score strong { font-size: 2rem; }
-    .score span { color: var(--muted); }
-
-    .issue {
-      padding: 12px 14px;
-      border-left: 3px solid var(--accent-2);
-      background: rgba(255,255,255,.03);
-      border-radius: 12px;
-      color: #e6eeff;
-      font-size: .94rem;
+    .video-label {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      font-size: 12px;
+      color: #fff;
+      opacity: .9;
     }
 
-    .action-row {
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      padding: 10px 14px 0;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mode-tab {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .mode-tab.active { background: var(--accent-soft); border-color: var(--accent); }
+
+    .main-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 0;
+      min-height: 420px;
+    }
+
+    .related-panel {
+      border-right: 1px solid var(--line);
       padding: 12px;
     }
 
-    .action {
-      padding: 14px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.04);
-      color: #dce7ff;
-      text-align: center;
-      font-weight: 700;
-      font-size: .92rem;
-    }
-
-    section {
-      padding: 26px 0;
-    }
-
-    .section-head {
+    .tab-row {
       display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 22px;
+      gap: 0;
+      margin-bottom: 12px;
     }
 
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(1.8rem, 3vw, 3rem);
-      letter-spacing: -.04em;
+    .tab {
+      padding: 7px 14px;
+      border: 1px solid var(--line);
+      border-right: 0;
+      background: #efefef;
+      font-size: 14px;
+      min-width: 88px;
+      text-align: center;
     }
 
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 62ch;
-      line-height: 1.7;
-    }
+    .tab:last-child { border-right: 1px solid var(--line); }
+    .tab.active { background: #fff; font-weight: 700; }
 
-    .feature-grid,
-    .service-grid,
-    .steps {
+    .card-grid {
       display: grid;
-      gap: 16px;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 14px;
     }
 
-    .feature-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
-    .service-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    .steps { grid-template-columns: repeat(4, minmax(0,1fr)); }
-
-    .feature,
-    .step,
-    .service,
-    .info-card,
-    .cta-box {
-      padding: 20px;
-      box-shadow: var(--shadow);
+    .mini-card {
+      text-align: center;
+      font-size: 13px;
     }
 
-    .feature h3,
-    .step h3,
-    .service h3,
-    .info-card h3,
-    .cta-box h2 {
-      margin: 10px 0 10px;
-      letter-spacing: -.02em;
+    .mini-thumb {
+      height: 84px;
+      border: 1px solid var(--soft-2);
+      background: #dedede;
+      margin-bottom: 8px;
     }
 
-    .feature p,
-    .step p,
-    .service p,
-    .info-card p,
-    .cta-box p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: .96rem;
-    }
-
-    .icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+    .detail-panel {
+      padding: 10px 12px 12px;
       display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(124,92,255,.25), rgba(25,194,255,.18));
-      border: 1px solid rgba(255,255,255,.1);
-      font-size: 1.2rem;
+      gap: 10px;
+      align-content: start;
     }
 
-    .showcase {
+    .box {
+      border: 1px solid var(--line);
+      background: #efefef;
+    }
+
+    .box h4 {
+      margin: 0;
+      padding: 6px 10px;
+      font-size: 18px;
+      border-bottom: 1px solid var(--line);
+      background: #e7e7e7;
+    }
+
+    .box .body {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .switch-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      border-top: 1px solid var(--line);
     }
 
-    .cta-box {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 18px;
-      align-items: center;
-      background:
-        radial-gradient(circle at top right, rgba(25,194,255,.18), transparent 25%),
-        linear-gradient(135deg, rgba(124,92,255,.18), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 26px;
+    .switch-row div {
+      text-align: center;
+      padding: 8px 0;
+      font-weight: 700;
+      border-right: 1px solid var(--line);
     }
 
-    .cta-side {
+    .switch-row div:last-child { border-right: 0; color: #888; }
+
+    .mode-view {
+      display: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 12px;
+      min-height: 220px;
+    }
+
+    .mode-view.active { display: block; }
+
+    .mode-view h4 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .mode-view ul {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .rightbar {
+      border-left: 1px solid var(--line);
+      background: #efefef;
+      padding: 14px;
       display: grid;
+      align-content: start;
       gap: 12px;
     }
 
+    .status-box {
+      border: 1px solid var(--line);
+      background: #f8f8f8;
+      padding: 12px;
+    }
+
+    .status-box h4 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .status-box p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
     .footer {
-      padding: 30px 0 50px;
-      color: var(--muted);
+      background: #3d3939;
+      color: #fff;
+      text-align: center;
+      padding: 10px 12px;
+      font-size: 14px;
     }
 
-    .footer-inner {
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+    @media (max-width: 1200px) {
+      .layout { grid-template-columns: 290px 1fr; }
+      .rightbar { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); }
     }
 
-    @media (max-width: 1080px) {
-      .hero-grid,
-      .showcase,
-      .cta-box,
-      .preview-grid,
-      .dashboard {
-        grid-template-columns: 1fr;
-      }
-
-      .feature-grid,
-      .service-grid,
-      .steps,
-      .mini-stats {
-        grid-template-columns: repeat(2, minmax(0,1fr));
-      }
-    }
-
-    @media (max-width: 720px) {
-      .nav-inner,
-      .section-head,
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .feature-grid,
-      .service-grid,
-      .steps,
-      .mini-stats,
-      .action-row {
-        grid-template-columns: 1fr;
-      }
-
-      .hero { padding-top: 44px; }
-      h1 { font-size: 2.5rem; }
-      .dashboard { min-height: auto; }
+    @media (max-width: 860px) {
+      .menu-row, .layout, .main-grid { grid-template-columns: 1fr; }
+      .sidebar, .related-panel { border-right: 0; }
+      .rightbar { border-top: 1px solid var(--line); }
+      .card-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="shell nav-inner">
-      <div class="brand">
-        <div class="brand-badge">🧼</div>
-        <div>AI Rest Room™</div>
-      </div>
-      <div class="nav-links">
-        <a href="#platform">Platform</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-        <a class="btn btn-primary" href="index.html">Open Worker Mode</a>
+  <div class="frame">
+    <div class="topbar">
+      <div class="brand">AI Rest Room™</div>
+      <div class="meta"><span>Contact</span><span>Logout</span></div>
+    </div>
+
+    <div class="menu-row">
+      <div class="menu-left">U1 Receiver</div>
+      <div class="menu-right">
+        <div class="menu-btn">Broadcast</div>
+        <div class="menu-btn active">Library</div>
+        <div class="menu-btn">Devices</div>
+        <div class="menu-btn">Services</div>
+        <div class="menu-btn">Upload</div>
       </div>
     </div>
-  </nav>
 
-  <header class="hero">
-    <div class="shell hero-grid">
-      <div>
-        <div class="eyebrow">✨ Human-in-the-Loop Cleaning Intelligence</div>
-        <h1><span class="grad">Beautiful control.</span><br/>Real AI support for frontline work.</h1>
-        <p>
-          AI Rest Room™ transforms restroom operations into a premium digital workflow.
-          Workers capture reality with camera input, Super AI analyzes conditions, and managers gain instant visibility,
-          reporting, and improvement insight — all inside one elegant system.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="index.html">Launch Worker Mode</a>
-          <a class="btn btn-ghost" href="#platform">See Platform Design</a>
-        </div>
-        <div class="mini-stats">
-          <div class="stat"><strong>24/7</strong><span>AI-assisted supervision</span></div>
-          <div class="stat"><strong>Before / After</strong><span>visual proof of work</span></div>
-          <div class="stat"><strong>Super AI</strong><span>future-ready service platform</span></div>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <div class="window-bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        </div>
-        <div class="dashboard">
-          <div class="panel-left">
-            <h3>Task Job</h3>
-            <div class="topic active">▶️ Start Work</div>
-            <div class="topic">📷 Start Camera Scan (Before)</div>
-            <div class="topic">🤖 Send AI Supervisor → Read</div>
-            <div class="topic">⚠️ Floor Safety First</div>
-            <div class="topic">👀 Check floor, tables, corners (hazards, water, trash)</div>
-            <div class="topic">🧻 Tissue Refill</div>
-            <div class="topic">🚽 Toilet Cleaning</div>
-            <div class="topic">- Toilet Bril (Seat)</div>
-            <div class="topic">- Toilet Floor</div>
-            <div class="topic">- Hand Sanitizer / Wet Wipes</div>
-            <div class="topic">- Period Boxes (Lades)</div>
-            <div class="topic">🚹 Urinal Cleaning</div>
-            <div class="topic">- Urinal</div>
-            <div class="topic">- Urinal Floor</div>
-            <div class="topic">🧻 Hand Towel Refill</div>
-            <div class="topic">🧴 Soap Refill</div>
-            <div class="topic">🚰 Washbasin Cleaning</div>
-            <div class="topic">🗑️ Waste Bins Remove</div>
-            <div class="topic">🪞 Mirror / Glass Cleaning</div>
-            <div class="topic">🧴 Hand Sanitizer</div>
-            <div class="topic">✅ Final Check</div>
-            <div class="topic">🔚 After Work</div>
-            <div class="topic">📷 Start Camera Scan (After)</div>
-            <div class="topic">🤖 Send AI Supervisor</div>
-            <div class="topic">📊 Reporting</div>
-            <div class="topic">⚠️ Report Damage to AI</div>
-            <div class="topic">🌱 Sustainability Report</div>
-            <div class="topic">⚖️ Report Waste (kg)</div>
-            <div class="topic">📦 Materials Used</div>
-            <div class="topic">- Toilet Papers</div>
-            <div class="topic">- Hand Papers</div>
-            <div class="topic">- Chemicals</div>
-            <div class="topic">- Hand Gloves</div>
-            <div class="topic">- Mask</div>
-            <div class="topic">- Etc</div>
-            <div class="topic">🤖 AI Scan Loop</div>
-            <div class="topic">▶️ Run AI Scan → AI Response</div>
-            <div class="topic">▶️ Run AI Scan → AI Response</div>
-            <div class="topic">🎯 Rewards</div>
-            <div class="topic">⭐ Each AI Scan = Points / Rewards</div>
-            <div class="topic">🧠 Innovation</div>
-            <div class="topic">💡 Share ideas & improvements</div>
-            <div class="topic">🚀 Core Idea</div>
-            <div class="topic">AI saves human lifetime</div>
-            <div class="topic">Humans improve the system</div>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="profile-box">
+          <div class="avatar">Image<br>of<br>user</div>
+          <div>
+            <div class="profile-name">Lakshmi 007</div>
+            <span class="profile-btn">Modify Profile</span>
           </div>
-          <div class="panel-right">
-            <div class="top-strip">
-              <span class="chip">Worker Mode</span>
-              <span class="chip">Camera → AI → Report</span>
-              <span class="chip">Schiphol-ready vision</span>
-            </div>
-            <div class="preview-grid">
-              <div class="preview-box">
-                <div class="preview-label">📷 Camera Scan Panel</div>
-                <div class="preview-visual">
-                  <div class="scan-ring"></div>
-                  AI Visual Review Panel
-                </div>
-              </div>
-              <div class="insight-box">
-                <h3>AI Result</h3>
-                <div class="score">
-                  <div>
-                    <span>Readiness Score</span>
-                    <strong>92%</strong>
-                  </div>
-                  <div style="color:var(--success);font-weight:800;">READY</div>
-                </div>
-                <div class="issue">Detected: low tissue level near stall 3.</div>
-                <div class="issue">Suggestion: refill + final floor scan.</div>
-                <div class="issue">Trend: repeated issue at morning peak.</div>
+        </div>
+
+        <div class="side-section">
+          <h3>Task Job</h3>
+          <div class="topic-grid">
+            <div class="topic-card active" onclick="showTopic('start')">
+              <div>
+                <div class="topic-icon">▶️</div>
+                <div class="topic-title">Start Work</div>
               </div>
             </div>
-            <div class="action-row">
-              <div class="action">📷 Start Camera Scan (Before)</div>
-              <div class="action">🤖 Send AI Supervisor → Read</div>
-              <div class="action">📷 Start Camera Scan (After)</div>
+            <div class="topic-card" onclick="showTopic('floor')">
+              <div>
+                <div class="topic-icon">⚠️</div>
+                <div class="topic-title">Floor Safety</div>
+              </div>
+            </div>
+            <div class="topic-card" onclick="showTopic('toilet')">
+              <div>
+                <div class="topic-icon">🚽</div>
+                <div class="topic-title">Toilet Cleaning</div>
+              </div>
+            </div>
+            <div class="topic-card" onclick="showTopic('urinal')">
+              <div>
+                <div class="topic-icon">🚹</div>
+                <div class="topic-title">Urinal Cleaning</div>
+              </div>
+            </div>
+            <div class="topic-card" onclick="showTopic('supplies')">
+              <div>
+                <div class="topic-icon">🧻</div>
+                <div class="topic-title">Supplies</div>
+              </div>
+            </div>
+            <div class="topic-card" onclick="showTopic('wash')">
+              <div>
+                <div class="topic-icon">🚰</div>
+                <div class="topic-title">Washbasin</div>
+              </div>
+            </div>
+            <div class="topic-card" onclick="showTopic('glass')">
+              <div>
+                <div class="topic-icon">🪞</div>
+                <div class="topic-title">Mirror / Glass</div>
+              </div>
+            </div>
+            <div class="topic-card" onclick="showTopic('report')">
+              <div>
+                <div class="topic-icon">📊</div>
+                <div class="topic-title">Reporting</div>
+              </div>
+            </div>
+            <div class="topic-card" onclick="showTopic('scan')">
+              <div>
+                <div class="topic-icon">🤖</div>
+                <div class="topic-title">AI Scan Loop</div>
+              </div>
+            </div>
+            <div class="topic-card" onclick="showTopic('reward')">
+              <div>
+                <div class="topic-icon">🎯</div>
+                <div class="topic-title">Rewards</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </header>
 
-  <section id="platform">
-    <div class="shell">
-      <div class="section-head">
-        <div>
-          <h2>One premium frame. Endless operational intelligence.</h2>
-        </div>
-        <p>
-          The landing experience should feel inspiring, trusted, and modern. The same design language then flows into worker mode,
-          supervisor review, reporting, and future multi-service AI products.
-        </p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature">
-          <div class="icon">🎥</div>
-          <h3>Camera-first workflow</h3>
-          <p>Reality comes first. Workers capture the actual condition before and after tasks instead of relying only on manual checklists.</p>
-        </article>
-        <article class="feature">
-          <div class="icon">🤖</div>
-          <h3>Super AI support</h3>
-          <p>AI gives fast, useful response: what is clean, what is missing, what is unsafe, and what should happen next.</p>
-        </article>
-        <article class="feature">
-          <div class="icon">📊</div>
-          <h3>Reporting that matters</h3>
-          <p>Damage reports, sustainability tracking, waste data, and material usage become structured insight, not forgotten paperwork.</p>
-        </article>
-        <article class="feature">
-          <div class="icon">🏆</div>
-          <h3>Reward-driven adoption</h3>
-          <p>Every scan can become motivation: better consistency, visible contribution, points, recognition, and stronger worker engagement.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="workflow">
-    <div class="shell">
-      <div class="section-head">
-        <div>
-          <h2>Elegant workflow for real frontline tasks</h2>
-        </div>
-        <p>
-          This is not only a beautiful page. It is a usable operational flow built around how workers really move, inspect, clean,
-          report, and close tasks during a shift.
-        </p>
-      </div>
-
-      <div class="steps">
-        <article class="step">
-          <div class="icon">1</div>
-          <h3>Start work</h3>
-          <p>Worker opens the system, selects the task context, and begins with floor safety and visual readiness.</p>
-        </article>
-        <article class="step">
-          <div class="icon">2</div>
-          <h3>Capture before</h3>
-          <p>Camera captures the initial condition. Super AI receives the image and prepares the first quality response.</p>
-        </article>
-        <article class="step">
-          <div class="icon">3</div>
-          <h3>Perform tasks</h3>
-          <p>Refill, clean, inspect, report damage, register materials used, and handle exceptions inside one guided workflow.</p>
-        </article>
-        <article class="step">
-          <div class="icon">4</div>
-          <h3>Capture after</h3>
-          <p>Final image becomes proof, feedback, score, and a learning signal for better schedules and stronger service quality.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="shell showcase">
-      <article class="info-card">
-        <h3>Human-centered AI</h3>
-        <p>
-          AI Rest Room™ is designed to save human lifetime, reduce repetitive checking, and return clearer decisions faster.
-          Humans stay in control. AI handles the details.
-        </p>
-      </article>
-      <article class="info-card">
-        <h3>Built for growth</h3>
-        <p>
-          Today restroom. Tomorrow automobile, retail, facility, and more. The same Super AI architecture can power many visual service workflows.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <section id="services">
-    <div class="shell">
-      <div class="section-head">
-        <div>
-          <h2>From restroom intelligence to a full Super AI platform</h2>
-        </div>
-        <p>
-          This landing page can become the beautiful public front door for the current product, while also showing the long-term platform vision.
-        </p>
-      </div>
-      <div class="service-grid">
-        <article class="service">
-          <div class="icon">🚽</div>
-          <h3>Restroom AI</h3>
-          <p>Cleaning control, before/after verification, issue detection, material tracking, and supervisor visibility.</p>
-        </article>
-        <article class="service">
-          <div class="icon">🚗</div>
-          <h3>Automobile AI</h3>
-          <p>Future visual inspection workflow for vehicle condition, fair trade support, and structured defect reporting.</p>
-        </article>
-        <article class="service">
-          <div class="icon">🌍</div>
-          <h3>Super AI Core</h3>
-          <p>One beautiful system language, many service modules, one growing intelligence engine powered by real visual data.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="shell">
-      <div class="cta-box">
-        <div>
-          <h2>Make the dream look real from the first page.</h2>
-          <p>
-            A beautiful front page creates trust, excitement, and ambition. It turns a functional tool into a product people want to use,
-            support, and remember.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="index.html">Enter Worker Mode</a>
-            <a class="btn btn-ghost" href="mailto:s.pasupathi@saaidutchscrapcorp.us">Contact Project Owner</a>
+        <div class="side-section">
+          <h3>Level 2 Workflow</h3>
+          <div id="topic-start" class="topic-detail">
+            <ul class="workflow-list">
+              <li>▶️ Start Work</li>
+              <li>📷 Start Camera Scan (Before)</li>
+              <li>🤖 Send AI Supervisor → Read</li>
+              <li>🔚 After Work</li>
+              <li>📷 Start Camera Scan (After)</li>
+              <li>🤖 Send AI Supervisor</li>
+            </ul>
+          </div>
+          <div id="topic-floor" class="topic-detail" style="display:none;">
+            <ul class="workflow-list">
+              <li>⚠️ Floor Safety First</li>
+              <li>👀 Check floor, tables, corners</li>
+              <li class="sub-list">hazards, water, trash</li>
+              <li>✅ Final Check</li>
+            </ul>
+          </div>
+          <div id="topic-toilet" class="topic-detail" style="display:none;">
+            <ul class="workflow-list">
+              <li>🚽 Toilet Cleaning</li>
+              <li class="sub-list">Toilet Bril (Seat)</li>
+              <li class="sub-list">Toilet Floor</li>
+              <li class="sub-list">Hand Sanitizer / Wet Wipes</li>
+              <li class="sub-list">Period Boxes (Lades)</li>
+            </ul>
+          </div>
+          <div id="topic-urinal" class="topic-detail" style="display:none;">
+            <ul class="workflow-list">
+              <li>🚹 Urinal Cleaning</li>
+              <li class="sub-list">Urinal</li>
+              <li class="sub-list">Urinal Floor</li>
+            </ul>
+          </div>
+          <div id="topic-supplies" class="topic-detail" style="display:none;">
+            <ul class="workflow-list">
+              <li>🧻 Tissue Refill</li>
+              <li>🧻 Hand Towel Refill</li>
+              <li>🧴 Soap Refill</li>
+              <li>🧴 Hand Sanitizer</li>
+              <li>📦 Materials Used</li>
+              <li class="sub-list">Toilet Papers</li>
+              <li class="sub-list">Hand Papers</li>
+              <li class="sub-list">Chemicals</li>
+              <li class="sub-list">Hand Gloves</li>
+              <li class="sub-list">Mask</li>
+              <li class="sub-list">Etc</li>
+            </ul>
+          </div>
+          <div id="topic-wash" class="topic-detail" style="display:none;">
+            <ul class="workflow-list">
+              <li>🚰 Washbasin Cleaning</li>
+              <li>🗑️ Waste Bins Remove</li>
+            </ul>
+          </div>
+          <div id="topic-glass" class="topic-detail" style="display:none;">
+            <ul class="workflow-list">
+              <li>🪞 Mirror / Glass Cleaning</li>
+            </ul>
+          </div>
+          <div id="topic-report" class="topic-detail" style="display:none;">
+            <ul class="workflow-list">
+              <li>📊 Reporting</li>
+              <li>⚠️ Report Damage to AI</li>
+              <li>🌱 Sustainability Report</li>
+              <li>⚖️ Report Waste (kg)</li>
+            </ul>
+          </div>
+          <div id="topic-scan" class="topic-detail" style="display:none;">
+            <ul class="workflow-list">
+              <li>🤖 AI Scan Loop</li>
+              <li>▶️ Run AI Scan → AI Response</li>
+              <li>▶️ Run AI Scan → AI Response</li>
+            </ul>
+          </div>
+          <div id="topic-reward" class="topic-detail" style="display:none;">
+            <ul class="workflow-list">
+              <li>🎯 Rewards</li>
+              <li>⭐ Each AI Scan = Points / Rewards</li>
+              <li>🧠 Innovation</li>
+              <li>💡 Share ideas & improvements</li>
+              <li>🚀 Core Idea</li>
+              <li class="sub-list">AI saves human lifetime</li>
+              <li class="sub-list">Humans improve the system</li>
+            </ul>
           </div>
         </div>
-        <div class="cta-side">
-          <div class="info-card">
-            <h3>For workers</h3>
-            <p>Simple, guided, visual, and motivating.</p>
-          </div>
-          <div class="info-card">
-            <h3>For managers</h3>
-            <p>Proof of work, trends, issues, and better operational decisions.</p>
-          </div>
-          <div class="info-card">
-            <h3>For investors</h3>
-            <p>A clear path from one use case to a scalable Super AI service platform.</p>
+      </aside>
+
+      <main class="content">
+        <div class="hero-panel">
+          <div class="video-box">
+            <div class="video-label">📷 Camera Scan Panel</div>
+            <div class="video-inner">Play hear feel</div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <footer class="footer">
-    <div class="shell footer-inner">
-      <div>AI Rest Room™ · Human-in-the-Loop Cleaning Intelligence</div>
-      <div>Designed for beautiful workflow, real operations, and scalable Super AI growth.</div>
+        <div class="mode-tabs">
+          <button class="mode-tab active" onclick="showMode('worker', this)">Worker</button>
+          <button class="mode-tab" onclick="showMode('supervisor', this)">AI Supervisor</button>
+          <button class="mode-tab" onclick="showMode('teamleader', this)">Team Leader</button>
+          <button class="mode-tab" onclick="showMode('operations', this)">Operations Leader</button>
+          <button class="mode-tab" onclick="showMode('superai', this)">Super AI</button>
+          <button class="mode-tab" onclick="showMode('sustainability', this)">Sustainability</button>
+        </div>
+
+        <div class="main-grid">
+          <section class="related-panel">
+            <div class="section-title">AI Rest Room™ — Frontline Control View</div>
+            <div class="tab-row">
+              <div class="tab active">Recent</div>
+              <div class="tab">Popular</div>
+              <div class="tab">Most Emailed</div>
+              <div class="tab">Browse All</div>
+            </div>
+            <div class="card-grid">
+              <div class="mini-card"><div class="mini-thumb"></div>Floor Safety</div>
+              <div class="mini-card"><div class="mini-thumb"></div>Tissue Refill</div>
+              <div class="mini-card"><div class="mini-thumb"></div>Toilet Cleaning</div>
+              <div class="mini-card"><div class="mini-thumb"></div>AI Review</div>
+              <div class="mini-card"><div class="mini-thumb"></div>Washbasin</div>
+              <div class="mini-card"><div class="mini-thumb"></div>Urinal</div>
+              <div class="mini-card"><div class="mini-thumb"></div>Damage Report</div>
+              <div class="mini-card"><div class="mini-thumb"></div>Rewards</div>
+            </div>
+          </section>
+
+          <section class="detail-panel">
+            <div class="box">
+              <h4>Select Country Language</h4>
+              <div class="body">India</div>
+            </div>
+            <div class="box">
+              <h4>Select Category</h4>
+              <div class="switch-row"><div>Audio</div><div>Video</div></div>
+              <div class="body">Society &amp; Culture</div>
+            </div>
+            <div class="mode-view active" id="mode-worker">
+              <h4>Worker View</h4>
+              <ul>
+                <li>Step-by-step task workflow</li>
+                <li>Before and after camera scan actions</li>
+                <li>Materials used and issue reporting</li>
+                <li>AI scan loop and instant response</li>
+              </ul>
+            </div>
+            <div class="mode-view" id="mode-supervisor">
+              <h4>AI Supervisor View</h4>
+              <ul>
+                <li>Read worker image input</li>
+                <li>Return cleaning score and issues</li>
+                <li>Flag hazards, missed steps, and risks</li>
+                <li>Approve or send back for improvement</li>
+              </ul>
+            </div>
+            <div class="mode-view" id="mode-teamleader">
+              <h4>Team Leader View</h4>
+              <ul>
+                <li>Monitor team progress by task</li>
+                <li>See repeated issues and worker support needs</li>
+                <li>Track rewards, compliance, and completion</li>
+              </ul>
+            </div>
+            <div class="mode-view" id="mode-operations">
+              <h4>Operations Leader View</h4>
+              <ul>
+                <li>High-level service quality control</li>
+                <li>Pattern detection by zone and shift</li>
+                <li>Resource planning and escalation visibility</li>
+              </ul>
+            </div>
+            <div class="mode-view" id="mode-superai">
+              <h4>Super AI View</h4>
+              <ul>
+                <li>Cross-service intelligence engine</li>
+                <li>Image learning, workflow understanding, and continuous optimization</li>
+                <li>Scales beyond restroom to other services</li>
+              </ul>
+            </div>
+            <div class="mode-view" id="mode-sustainability">
+              <h4>Sustainability View</h4>
+              <ul>
+                <li>Waste (kg) reporting</li>
+                <li>Chemical and material tracking</li>
+                <li>Transparent sustainable operations insight</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <aside class="rightbar">
+        <div class="status-box">
+          <h4>Status</h4>
+          <p>Not started</p>
+        </div>
+        <div class="status-box">
+          <h4>AI Score</h4>
+          <p>0</p>
+        </div>
+        <div class="status-box">
+          <h4>Rewards</h4>
+          <p>0 Points</p>
+        </div>
+        <div class="status-box">
+          <h4>Lists</h4>
+          <p>History<br>Fashion<br>Issues &amp; Causes<br>Life &amp; Death<br>Men</p>
+        </div>
+      </aside>
     </div>
-  </footer>
+
+    <div class="footer">2026 YaaUniverse.com. All rights reserved.</div>
+  </div>
+
+  <script>
+    function showTopic(name) {
+      document.querySelectorAll('.topic-card').forEach(card => card.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.querySelectorAll('.topic-detail').forEach(box => box.style.display = 'none');
+      document.getElementById('topic-' + name).style.display = 'block';
+    }
+
+    function showMode(name, btn) {
+      document.querySelectorAll('.mode-tab').forEach(tab => tab.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.mode-view').forEach(view => view.classList.remove('active'));
+      document.getElementById('mode-' + name).classList.add('active');
+    }
+  </script>
 </body>
 </html>
