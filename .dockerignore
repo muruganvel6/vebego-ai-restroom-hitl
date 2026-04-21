@@ -1,5 +1,6 @@
+.env
+.env.*
+secrets/
+.git
 node_modules
 npm-debug.log
-.git
-.gitignore
-README.md
